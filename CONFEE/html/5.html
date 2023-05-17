@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="jn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>結果表示画面</title>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <div class="logo">
+                <p>CONFEE</p>
+            </div>
+            <div class="hmenu">
+                <a href="l"><img src="../img/4.png" alt=""></a>
+            </div>
+        </header>
+        <main>
+            <!-- 空白 -->
+            <div class="mainmargin"> </div>
+            <!-- 過去ログタイトル -->
+            <div class="kakotitle">
+                <p>私の感情の記録</p>
+            </div>
+
+            <!-- 並び替えボタン -->
+            <div class="kakobtn">
+             <button id="f_change">▼感情で並び替え </button>
+             <button id="r_change">▼古い順に並び替え</button>
+            </div>
+            <div id="container"></div>
+
+            <!-- <div id="kakoview">
+                <div class="kakodata">
+                </div>
+            </div> -->
+            
+            <!-- 空白 -->
+            <div class="bottommargin"> </div>
+        </main>
+        <footer>
+            <div class="fbox1">
+                <a href="home.html"><img src="../img/1.png" alt=""></a>
+            </div>
+            <div class="fbox2">
+                <a href="5.html"><img src="../img/2.png" alt=""></a>
+            </div>
+            <div class="fbox3">
+                <a href="https://careality.jp/wheel-of-emotions/"><img src="../img/5.png" alt=""></a>
+            </div>
+            <div class="fbox3">
+                <a href="3.html"><img src="../img/3.png" alt=""></a>
+            </div>
+        </footer>
+    </div>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- JQuery -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+        apiKey: "AIzaSyBIAp77hJUMvb1lMxxib8eSGMmkGh8U-1g",
+        authDomain: "confee-5aca7.firebaseapp.com",
+        databaseURL : "https://confee-5aca7-default-rtdb.firebaseio.com",
+        projectId: "confee-5aca7",
+        storageBucket: "confee-5aca7.appspot.com",
+        messagingSenderId: "754456726342",
+        appId: "1:754456726342:web:bfa971473689237a873347"
+        };
+      
+        // Initialize Firebaseの初期化
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
+
+        //以下 データベースからの情報獲得と表示
+        window.addEventListener('DOMContentLoaded', () => {
+        // ログイン状態の変更を監視
+        onAuthStateChanged(auth, (user) => {
+         if (user) {
+        const userId = user.uid;
+        console.log(userId);
+
+        const userRef = ref(db, `users/${userId}`);
+
+        // データの取得と表示
+        onValue(userRef, (snapshot) => {
+        const data = snapshot.val();
+        // データを投稿ごとにグループ化
+        const groupedData = groupDataById(data);
+        // グループ化されたデータを表示
+        displayGroupedData(groupedData);
+         });
+        } else {
+        // ログインしていない場合の処理
+        console.log('User is not logged in.');
+        }
+        });
+        });
+
+    // データを投稿ごとにグループ化する関数
+    function groupDataById(data) {
+        const groupedData = {};
+        for (const key in data) {
+        if (Object.hasOwnProperty.call(data, key)) {
+        const item = data[key];
+        const postId = key; // 投稿IDを取得
+        if (groupedData[postId]) {
+        groupedData[postId].push(item);
+        } else {
+        groupedData[postId] = [item];
+         }
+        }
+        }
+        return groupedData;
+     }
+
+    // グループ化されたデータを表示する関数
+    function displayGroupedData(groupedData) {
+         const containerElement = document.getElementById    ('container');
+        containerElement.innerHTML = ''; // コンテナ要素をクリア
+
+        // 投稿ごとに逆順で表示するために、投稿IDの配列を逆順にソート
+        const postIds = Object.keys(groupedData).sort().reverse();
+
+        postIds.forEach((postId) => {
+        if (Object.hasOwnProperty.call(groupedData, postId)) {
+        const items = groupedData[postId];
+
+        const postElement = document.createElement('div');
+         const postBodyElement = document.createElement('div');
+
+        items.forEach((item) => {
+        const itemId = item.id;
+        const date = item.date;
+        const title = item.title;
+        const result = item.result;
+        const dekigoto = item.dekigoto;
+        const riyu = item.riyu;
+
+        const itemContainerElement = document.createElement('div');
+        itemContainerElement.id = `item-${itemId}`; // IDを設定
+        itemContainerElement.classList.add('item-container'); // クラス名を追加
+
+        const dateElement = document.createElement('div');
+        dateElement.classList.add('date'); // クラス名を追加
+        dateElement.textContent = date;
+        itemContainerElement.appendChild(dateElement);
+
+        const titleElement = document.createElement('div');
+        titleElement.textContent = title;
+        itemContainerElement.appendChild(titleElement);
+
+        const resultElement = document.createElement('div');
+        resultElement.classList.add('result'); // クラス名を追加
+        resultElement.textContent = result;
+        itemContainerElement.appendChild(resultElement);
+
+        const dekigotoElement = document.createElement('div');
+        dekigotoElement.textContent = dekigoto;
+        dekigotoElement.style.display = 'none'; // 初期状態では非表示
+        itemContainerElement.appendChild(dekigotoElement);
+
+        const riyuElement = document.createElement('div');
+        riyuElement.textContent = riyu;
+        riyuElement.style.display = 'none'; // 初期状態では非表示
+        itemContainerElement.appendChild(riyuElement);
+
+        // 結果によって背景色を設定
+        const backgroundColor = getColorByResult(result);
+        if (backgroundColor) {
+          itemContainerElement.style.backgroundColor = backgroundColor;
+        }
+
+        // クリックイベントの追加
+        titleElement.addEventListener('click', () => {
+          dekigotoElement.style.display = 'block'; // 出来事を表示
+        });
+
+        resultElement.addEventListener('click', () => {
+          riyuElement.style.display = 'block'; // 理由を表示
+        });
+
+        postBodyElement.prepend(itemContainerElement); // 投稿ごとの要素を投稿エリアの先頭に追加
+         });
+
+        // 投稿エリアをコンテナに追加
+        postElement.appendChild(postBodyElement);
+        containerElement.appendChild(postElement);
+        }
+     });
+    }
+
+
+    // 結果によって背景色を返す関数
+    function getColorByResult(result) {
+    const colors = { 
+            '喜び':'#fffa71',
+            '愛':'#d4fb4f',
+            '罪悪感':'#9bc163',
+            '歓喜':'#76fa62',
+            '不健康':'#9a9750',
+            '自尊心':'#eabf93',
+            '楽観':'#fbedbc',
+            'ほろ苦さ':'#b59e79',
+            '信頼':'#8ff971',
+            '服従':'#59c13b',
+            '好奇心':'#72fac0',
+            '葛藤':'#5b88bf',
+             '支配':'#b3c13c',
+            '希望' :'#dbfb52',
+            '感傷的':'#68c4eb',
+             '恐れ':'#62cf68',
+            '畏怖':'#61d18f',
+            '羞恥心':'#4d79f3',
+            '冷淡':'#928dab',
+            '懸念' :'#ddeb54',
+            '絶望':'#43a0e2',
+            '驚き':'#6df2ef',
+            '不信感':'#9aa2c9',
+            '憤慨':'#eb3478',
+            '混乱':'#b9939e',
+            '拒絶':'#768fca',
+            '悲しみ':'#749dfa',
+            '後悔' :'#dabaf9',
+            '嫉妬':'#d17aee',
+            '悲観的':'#e4bee3',
+            '嫌悪':'#9a6af0',
+            '軽蔑':'#cfa3aa',
+            '皮肉':'#d397ca',
+            '怒り':'#ec616a',
+            '攻撃性':'#d6764f',
+            '期待':'#f1996b'
+        };
+        return colors[result] || null;
+        }  
+
+// 以下結果の並び替えについて
+// 🟡古い順の方がダブルクリックになる件はまだ未解決
+
+// ボタン要素の取得
+const emotionButton = document.getElementById('f_change');
+const dateButton = document.getElementById('r_change');
+
+// 並び替え状態の管理用フラグ
+let isSortedByEmotion = false;
+let isSortedByDate = false;
+
+// 感情で並び替えるボタンのクリックイベント
+emotionButton.addEventListener('click', () => {
+  const containerElement = document.getElementById('container');
+  const items = [...containerElement.getElementsByClassName('item-container')];
+
+  // 感情での並び替え
+  items.sort((a, b) => {
+    const resultA = a.getElementsByClassName('result')[0].textContent;
+    const resultB = b.getElementsByClassName('result')[0].textContent;
+    return resultA.localeCompare(resultB);
+  });
+
+  if (isSortedByEmotion) {
+    // 逆順に並び替え
+    items.reverse();
+  }
+
+  isSortedByEmotion = !isSortedByEmotion;
+  isSortedByDate = false;
+
+  // コンテナ要素をクリア
+  containerElement.innerHTML = '';
+  items.forEach((item) => {
+    containerElement.appendChild(item);
+  });
+});
+
+// 古い順に並び替えるボタンのクリックイベント
+dateButton.addEventListener('click', () => {
+  const containerElement = document.getElementById('container');
+  const items = [...containerElement.getElementsByClassName('item-container')];
+
+  // 投稿IDを取得して並び替え
+  items.sort((a, b) => {
+    const postIdA = a.getAttribute('data-post-id');
+    const postIdB = b.getAttribute('data-post-id');
+    return postIdA - postIdB;
+  });
+
+  if (isSortedByDate) {
+    // 元の並び順に戻す
+    items.reverse();
+  }
+
+  isSortedByDate = !isSortedByDate;
+  isSortedByEmotion = false;
+
+  // コンテナ要素をクリア
+  containerElement.innerHTML = '';
+  items.forEach((item) => {
+    containerElement.appendChild(item);
+  });
+});
+
+
+
+
+
+    </script> 
+</body>
+</html>

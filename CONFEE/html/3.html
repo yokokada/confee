@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="jn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>入力画面</title>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <div class="logo">
+                <p>CONFEE</p>
+            </div>
+            <div class="hmenu">
+                <a href="l"><img src="../img/4.png" alt=""></a>
+            </div>
+        </header>
+        <main>
+            <!-- 空白 -->
+            <div class="mainmargin"> </div>
+            <!-- 質問 -->
+            <div class="q">
+                <p>嬉しかったこと、悲しかったことなど感情が動いた出来事について聞かせてください</p>
+            </div>
+            <!-- 返答欄 -->
+            <div class="a">
+                <textarea name="" id="aerea" cols="32" rows="8"></textarea>
+            </div>
+            <!-- 日時選択欄 -->
+            <div class="q ">
+                <p>その出来事が起こったのはいつですか？</p>
+            </div>
+            <!-- 日時入力画面 -->
+            <div class="qdate">
+                <select id="year"></select>年
+                <select id="month"></select>月
+                <select id="date"></select>日
+                <br>
+                <select id="hour"></select>時ごろ
+            </div>
+            <!-- 感情ボタン選択の質問 -->
+            <div class="q feel">
+                <p>その出来事に対して感じた感情を<span class="akaji">1つか、2つ</span>選んでください</p>
+            </div>
+            <!-- 感情ボタンのグループ -->
+            <div class="fselect">
+                <div class="bleft">
+                    <button id="joy">喜び</button>
+                    <button id="trust">信頼</button>
+                    <button id="fear">恐れ</button>
+                    <button id="surprise">驚き</button>
+                </div>
+                <div class="bright">
+                    <button id="sadness">悲しみ</button>
+                    <button id="disgust">嫌悪</button>
+                    <button id="anger">怒り</button>
+                    <button id="anticipation">期待</button>
+                </div>
+            </div>
+            <!-- 理由明記質問 -->
+            <div class="q reason">
+                <p>その感情を選んだ理由を教えてください<span class="komoji"> (思いつかなければ空白で大丈夫です)</span></p>
+            </div>
+            <!-- 理由入力 -->
+            <div class="a">
+                <textarea name="" id="aerea_2" cols="32" rows="2"></textarea>
+            </div>
+            <!-- タイトル質問 -->
+            <div class="q title">
+                <p>今日の出来事にタイトルをつけるとしたら何とつけますか？</p>
+            </div>
+            <!-- タイトル入力 -->
+            <div class="titleinput">
+                <input type="text" id="f_title">
+            </div>
+            <!-- 結果を保存するボタン -->
+            <div class="savezone">
+                <button id="save" onclick="window.location.href='4.html';">結果を見る</button>
+            </div>
+            <!-- 空白 -->
+            <div class="bottommargin"> </div>
+        </main>
+        <footer>
+            <div class="fbox1">
+                <a href="home.html"><img src="../img/1.png" alt=""></a>
+            </div>
+            <div class="fbox2">
+                <a href="5.html"><img src="../img/2.png" alt=""></a>
+            </div>
+            <div class="fbox3">
+                <a href="https://careality.jp/wheel-of-emotions/"><img src="../img/5.png" alt=""></a>
+            </div>
+            <div class="fbox3">
+                <a href="3.html"><img src="../img/3.png" alt=""></a>
+            </div>
+        </footer>
+    </div>
+ 
+   
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- JQuery -->
+    <!--** 以下Firebase **-->
+    <script type="module" src="../js/3.js"></script>
+</body>
+</html>

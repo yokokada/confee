@@ -1,0 +1,52 @@
+body{
+    font-family: "ヒラギノ角ゴ ProN W3", HiraKakuProN-W3, 游ゴシック, "Yu Gothic", メイリオ, Meiryo, Verdana, Helvetica, Arial, sans-serif;
+}
+.topwrap{
+    width: 375px;
+    height: 667px;
+    background-image: url(../img/top.png);
+    background-position: center center;
+    background-size: cover;
+    margin: 0 auto;
+}
+h1{
+    color: white;
+    text-align: center;
+    font-size: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+}
+.title{
+    /* background-color: antiquewhite; */
+    width: 200px;
+    height: 50px;
+    margin: 0 auto;
+}
+.mainmargin{
+    height: 180px;
+}
+.summary{
+    /* background-color: antiquewhite; */
+    margin: 20px auto;
+    text-align: center;
+}
+.setumei{
+    margin-top: 100px;
+    text-align: center;
+}
+.setumei a{
+    color: black;
+}
+.login{
+    text-align: center;
+    margin-top: 100px;
+}
+.login button{
+    width: 136px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 17px;
+    color: black;
+    border: 2px solid;
+    background-color: rgb(231, 232, 235);
+}

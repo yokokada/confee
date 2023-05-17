@@ -1,0 +1,418 @@
+/* 全ページ共通 */
+body{
+    font-family: "ヒラギノ角ゴ ProN W3", HiraKakuProN-W3, 游ゴシック, "Yu Gothic", メイリオ, Meiryo, Verdana, Helvetica, Arial, sans-serif;
+    background-color: aliceblue;
+    height: 100%;
+    margin: 0 ;
+}
+.wrap{
+    width: 375px;
+    background-color: aliceblue;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+header{
+    flex-shrink: 0; /* 高さが可変しないようにする */
+    width: 100%;
+    position: fixed; /* 固定する */
+    top: 0;
+    left: 0;
+    height: 50px;
+    background-color: rgb(60, 60, 192);
+    color: white;
+    margin: 0 auto;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+header p{
+    font-size: 20px;
+    /* padding: 0px; */
+    text-align: center;
+    /* background-color: beige; */
+    margin-left: 130px;
+}
+.hmenu{
+    margin-top: 10px;  
+}
+main{
+    /* background-color: aliceblue; */
+    flex: 1; /* 残りの高さをいっぱい使う */
+    overflow-y: auto; /* 長い場合はスクロールする */
+    margin-top: 50px;
+    width: 100%;
+    margin: 0 auto;
+}
+footer{
+    flex-shrink: 0; /* 高さが可変しないようにする */
+    position: fixed; /* 固定する */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: aliceblue;
+    border: none;
+    z-index: 100; /* 他の要素よりも手前に表示 */
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    align-items: flex-end;
+}
+p{
+    font-size: 15px;
+    padding: 0 7px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.mainmargin{
+    height: 70px;
+}
+.bottommargin{
+    height: 100px;
+}
+.menubox button{
+    width: 136px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 17px;
+    color: black;
+    border: 2px solid;
+    background-color: rgb(231, 232, 235);
+    margin: 0 auto;
+}
+.menubox{
+    display: flex;
+}
+
+
+/* homeページ */
+.aisatu{
+    width: 340px;
+    text-align: center;
+}
+.kakotitle{
+    text-align: center;
+}
+.kakolog{
+    margin-top: 50px;
+}
+.intoro{
+    text-align: center;
+    /* background-image: url(../img/kurage.gif);
+    background-color: rgba(0, 0, 0, 1);
+    color: white; */
+}
+   
+.summary button{
+    margin-top: 30px;
+}
+
+
+/* 1ページ */
+.text{
+    /* background-color: antiquewhite; */
+    width: 280px;
+}
+.setumei{
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+}
+.yurai{
+    margin: 0 auto;
+}
+.purutikku{
+    margin: 0 auto;
+}
+.purutikku a{
+    color:  rgb(60, 60, 192);
+    font-size: smaller;
+    margin-left: 10px;  
+}
+.using{
+    margin: 20px auto;
+}
+.login{
+    margin: 0 auto;
+}
+button{
+    width: 136px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 17px;
+    color: black;
+    border: 2px solid;
+    background-color: rgb(231, 232, 235);
+}
+.menubox{
+    margin-top: 30px;
+
+}
+
+/* 3ページcss */
+.q{
+    /* background-color: beige; */
+    font-style: 10px;
+    width: 300px;
+    height: auto;
+    margin: 0 auto;
+    /* text-align: center; */
+    padding: 12px auto;
+    font-size: 15px;
+}
+.a{
+    /* background-color: antiquewhite; */
+    margin: 10px auto;
+    text-align: center;
+}
+#aerea{
+    /* background-color: #efefef; */
+    border-radius: 10px;
+    font-size: 14px;
+    padding: 8px;
+    border: 2px solid;   
+}
+#aerea_2{
+    border-radius: 10px;
+    font-size: 14px;
+    padding: 8px;
+    border: 2px solid;   
+}
+.selected {
+    background-color: rgb(60, 60, 192);
+    color: white;
+  }
+.fselect button{
+    width: 136px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 17px;
+    color: black;
+    border: 2px solid;
+    background-color: rgb(231, 232, 235);
+}
+.fselect button.selected {
+    background-color: rgb(60, 60, 192);
+    color: white;
+  }
+/* .fselect button:active {
+    background-color:  rgb(60, 60, 192);
+  } */
+
+.fselect{
+    /* background-color: beige; */
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+.bleft{
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+}
+.bright{
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+}
+
+.savezone{
+    /* background-color: beige; */
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 30px;
+}
+#save{
+    width: 144px;
+    height: 50px;   
+    border-radius: 10px;
+    font-size: 17px;
+    color: black;
+    border: 2px solid;
+    background-color:  rgb(231, 232, 235);
+}
+#save.selected {
+    background-color: rgb(60, 60, 192);
+    color: white;
+  }
+
+.qdate{
+    margin-top: 10px;
+    /* background-color: antiquewhite; */
+    width: 280px;
+    margin: 0 auto;
+    font-size: 16px;
+    padding: 0 8px;
+}
+
+#year{
+    font-size: 16px;
+    color:black;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 4px;
+    background-color:  rgb(231, 232, 235);
+    border: 2px solid;
+    /* background-color: #efefef; */
+}
+#month{
+    font-size: 16px;
+    color:black;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 4px;
+    background-color:  rgb(231, 232, 235);
+    border: 2px solid;
+    /* background-color: #efefef; */
+}
+#date{
+    color:black;
+    font-size: 16px;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 4px;
+    background-color:  rgb(231, 232, 235);
+    border: 2px solid;
+    /* background-color: #efefef; */
+}
+#hour{
+    color:black;
+    font-size: 16px;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 4px;
+    margin-top: 10px;
+    background-color:  rgb(231, 232, 235);
+    border: 2px solid;
+    /* background-color: #efefef; */
+}
+.feel{
+margin-top: 30px;
+
+}
+.date{
+    margin-top: 30px;
+}
+.reason{
+    margin-top: 30px;
+}
+.title{
+    margin-top: 30px;
+
+}
+.komoji{
+    font-size: 80%;
+    display: inline;
+    vertical-align: middle;
+    color: rgb(194, 35, 35);
+}
+
+input{
+    display: block;
+    /* background-color: azure; */
+    border-radius: 10px;
+    font-size: 14px;
+    padding: 8px;
+    border: 2px solid;   
+    width: 280px;
+    margin: 0 auto;
+}
+.akaji{
+    color: rgb(194, 35, 35);
+    font-weight: 5px;
+}
+
+
+/* 4ページ */
+.f_result{
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+
+}
+.box2{
+    /* background-color: aqua; */
+    margin: 0 auto;
+    width: 220px;
+    height: 50px;
+    /* border: 2px solid; */
+}
+.box2 p{
+    margin-top: 10px;
+}
+#result-display{
+    padding: 12px;
+    font-size: 20px;
+}
+#result-display p{
+    margin: 0 0;
+}
+.box1 p{
+    margin-bottom: 0;
+}
+.box3{
+    display: flex;
+    justify-content: center;
+    margin-top: 60px; 
+}
+.box3 button{
+    width: 80px;
+    height: 50px;
+}
+.kakeru p{
+    font-size: 30px;
+    margin: 5px 5px;
+}
+.box4{
+    margin-top: 10px;
+}
+.box4 p{
+    margin-top: 5px;
+    font-size: 12px;
+}
+.box4 a{
+    color: black;
+}
+.box5{
+    margin-top: 10px;
+    margin: auto;
+    margin-bottom: 20px;
+    background-color: white;
+    width: 280px;
+    height:auto;
+}
+.editorsave{
+display: flex;
+justify-content: center;
+gap: 10px;
+}
+
+/* 5ページ */
+.kakobtn{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 0 auto;
+}
+.kakobtn button{
+    border: none;
+    background-color: transparent;
+    color: rgb(60, 60, 192);
+    width: 150px;
+    font-size: 14px;
+}
+.item-container {
+    border-radius: 10px;
+    font-size: 14px;
+    padding: 8px;
+    border: 2px solid;   
+    margin: 10px auto;
+    width: 280px;
+}
+.date{
+    margin: 0;
+}
