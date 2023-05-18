@@ -1,3 +1,67 @@
+     // ファイアベースの設定
+        // Import the functions you need from the SDKs you need
+        import { initializeApp }
+        from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+   import { getDatabase, ref, push, set, onChildAdded, remove,child,onChildRemoved,onValue } 
+       from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+   import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } 
+       from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+ apiKey: "AIzaSyBIAp77hJUMvb1lMxxib8eSGMmkGh8U-1g",
+ authDomain: "confee-5aca7.firebaseapp.com",
+ databaseURL : "https://confee-5aca7-default-rtdb.firebaseio.com",
+ projectId: "confee-5aca7",
+ storageBucket: "confee-5aca7.appspot.com",
+ messagingSenderId: "754456726342",
+ appId: "1:754456726342:web:bfa971473689237a873347"
+};
+
+ // Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+    //GoogleAuth(認証用)
+        const provider = new GoogleAuthProvider();
+       provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+       const auth = getAuth();
+
+       //Login処理
+       $("#login").on("click",function(){
+       //Google認証完了後の処理
+       signInWithPopup(auth, provider).then((result) => {
+       //Login後のページ遷移
+       location.href="home.html";  
+       }).catch((error) => {
+       // Handle Errors here.
+       const errorCode = error.code;
+       const errorMessage = error.message;
+       // The email of the user's account used.
+       const email = error.email;
+       // The AuthCredential type that was used.
+       const credential = GoogleAuthProvider.credentialFromError(error);
+       // ...
+       });
+   });
+
+   // ログアウト設定
+   document.getElementById('logout-link').addEventListener('click', (event) => {
+           event.preventDefault(); // リンクのデフォルトの挙動をキャンセルする
+           signOut(auth)
+           .then(() => {
+               // ログアウト成功時の処理
+               console.log('ログアウトしました');
+               window.location.href = 'top.html'; // トップページのURLに変更してください
+           })
+           .catch((error) => {
+               // ログアウト失敗時の処理
+               console.log('ログアウトに失敗しました', error);
+           });
+       });
+       
 // 入力ページのjs
 const buttons = document.querySelectorAll('.fselect button'); // 感情ボタンの要素を取得
 const saveButton = document.getElementById('save'); // 保存ボタンの要素を取得
@@ -314,6 +378,16 @@ function setDatetime() {
   hourSelect.value = hour;
 }
 setDatetime();
+
+        // ハンバーガーアイコンをクリックした時のイベントリスナーを設定
+        hamburgerIcon.addEventListener('click', toggleMenu);
+
+        // ハンバーガーアイコンをクリックした時の処理
+        document.querySelector('.hamburger-icon').addEventListener('click', function() {
+        this.classList.toggle('open');
+        var menuItems = document.querySelector('.menu-items');
+        menuItems.classList.toggle('open');
+        });
 
 
 

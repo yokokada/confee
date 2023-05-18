@@ -9,14 +9,25 @@
 </head>
 <body>
     <div class="wrap">
-            <header>
-                <div class="logo">
-                    <p>CONFEE</p>
-                </div>
-                <div class="hmenu">
-                    <a href="l"><img src="../img/4.png" alt=""></a>
-                </div>
-            </header>
+        <header>
+            <div class="logo">
+              <p>CONFEE</p>
+            </div>
+            <div class="hamburger-menu">
+              <div class="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <nav class="menu-items">
+               <div class="menu_box">
+                <ul>
+                  <li><a href="top.html">TOPに戻る</a></li>
+                </ul>
+            </div>
+              </nav>
+            </div>
+        </header>
             <main>
                <div class="setumei">
                  <!-- 空白 -->
@@ -40,7 +51,7 @@
                    </div>
                   <!-- ログインボタン -->
                   <div class="login">
-                  <button onclick="window.location.href='home.html';">LOGIN</button>
+                  <button onclick="window.location.href='top.html';">LOGIN</button>
                   </div>
                   <!-- 空白 -->
                   <div class="bottommargin"></div>
@@ -52,9 +63,25 @@
  
    
     <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+
+
+
+    </script>
     <!-- JQuery -->
     <!--** 以下Firebase **-->
-    <script type="module" src="../js/3.js"></script>
+    <script type="module">
+
+        // ハンバーガーアイコンをクリックした時のイベントリスナーを設定
+        hamburgerIcon.addEventListener('click', toggleMenu);
+
+        // ハンバーガーアイコンをクリックした時の処理
+        document.querySelector('.hamburger-icon').addEventListener('click', function() {
+        this.classList.toggle('open');
+        var menuItems = document.querySelector('.menu-items');
+        menuItems.classList.toggle('open');
+        });
+
+    </script>
 </body>
 </html>
