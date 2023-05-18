@@ -11,10 +11,25 @@
     <div class="wrap">
         <header>
             <div class="logo">
-                <p>CONFEE</p>
+              <p>CONFEE</p>
             </div>
-            <div class="hmenu">
-                <a href="l"><img src="../img/4.png" alt=""></a>
+            <div class="hamburger-menu">
+              <div class="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <nav class="menu-items">
+               <div class="menubox">
+                <ul>
+                  <li><a href="#">ホームに戻る</a></li>
+                  <li><a href="#">記録する</a></li>
+                  <li><a href="#">過去の感情の記録を見る</a></li>
+                  <li><a href="#">感情について知る</a></li>
+                  <li><a href="#">ログアウト</a></li>
+                </ul>
+            </div>
+              </nav>
             </div>
         </header>
         <main>
@@ -290,7 +305,23 @@ onAuthStateChanged(auth, (user) => {
         return colors[result] || null;
         }  
 
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const hamburgerIcon = document.querySelector('.hamburger-icon');
 
+        // メニューの開閉を切り替える関数
+        function toggleMenu() {
+        hamburgerMenu.classList.toggle('open');
+        }
+
+        // ハンバーガーアイコンをクリックした時のイベントリスナーを設定
+        hamburgerIcon.addEventListener('click', toggleMenu);
+
+        // ハンバーガーアイコンをクリックした時の処理
+        document.querySelector('.hamburger-icon').addEventListener('click', function() {
+        this.classList.toggle('open');
+        var menuItems = document.querySelector('.menu-items');
+        menuItems.classList.toggle('open');
+        });
     </script>
 </body>
 </html>
