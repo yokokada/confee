@@ -510,6 +510,13 @@ display: flex;
 justify-content: center;
 gap: 10px;
 }
+.hozonmsg{
+    text-align: center; 
+}
+.hozonmsg p{
+    font-size: 12px;
+}
+
 
 /* 5ページ */
 .kakobtn{
